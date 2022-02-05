@@ -1,12 +1,11 @@
-import { City } from "../../model/City";
+import { City } from "../../entities/City";
 import { ICityRepository } from "../../repositories/ICitiesRepository";
 
 class ListCitiesUseCase {
   constructor(private citiesRepository: ICityRepository) {}
 
-  execute(): City[] {
-    const cities = this.citiesRepository.list();
-
+  async execute(): Promise<City[]> {
+    const cities = await this.citiesRepository.list();
     return cities;
   }
 }

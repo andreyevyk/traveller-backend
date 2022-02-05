@@ -1,4 +1,4 @@
-import { City } from "../model/City";
+import { City } from "../entities/City";
 
 interface ICreateCityDTO {
   name: string;
@@ -8,14 +8,14 @@ interface ICreateCityDTO {
 }
 
 interface ICityRepository {
-  findByName(name: string): City | undefined;
-  list(): City[];
   create({
     name,
     description,
     sub_description,
     image: string,
-  }: ICreateCityDTO): void;
+  }: ICreateCityDTO): Promise<void>;
+  list(): Promise<City[]>;
+  findByName(name: string): Promise<City | undefined>;
 }
 
 export { ICityRepository, ICreateCityDTO };

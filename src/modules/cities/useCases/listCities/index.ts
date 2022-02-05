@@ -2,9 +2,10 @@ import { CitiesRepository } from "../../repositories/implementations/CitiesRepos
 import { ListCitiesController } from "./ListCitiesController";
 import { ListCitiesUseCase } from "./ListCitiesUseCase";
 
-const citiesRepository = CitiesRepository.getInstance();
-const listCitiesUseCase = new ListCitiesUseCase(citiesRepository);
+export default (): ListCitiesController => {
+  const citiesRepository = new CitiesRepository();
+  const listCitiesUseCase = new ListCitiesUseCase(citiesRepository);
 
-const listCitiesController = new ListCitiesController(listCitiesUseCase);
-
-export { listCitiesController };
+  const listCitiesController = new ListCitiesController(listCitiesUseCase);
+  return listCitiesController;
+};

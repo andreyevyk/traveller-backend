@@ -9,13 +9,13 @@ class CreateCityController {
     private uploadImageUseCase: UploadImageUseCase
   ) {}
 
-  public async handle(request: Request, response: Response) {
+  async handle(request: Request, response: Response): Promise<Response> {
     const { name, description, sub_description } = request.body;
     const { file } = request;
 
     const filename = await this.uploadImageUseCase.execute(file!.filename);
 
-    this.createCityUseCase.execute({
+    await this.createCityUseCase.execute({
       name,
       description,
       sub_description,

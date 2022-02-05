@@ -1,35 +1,37 @@
-import { City } from "../../model/City";
+import { getRepository, Repository } from "typeorm";
+
+import { City } from "../../entities/City";
 import { ICityRepository, ICreateCityDTO } from "../ICitiesRepository";
 
 class CitiesRepository implements ICityRepository {
-  private cities: City[];
+  private repository: Repository<City>;
 
-  // eslint-disable-next-line no-use-before-define
-  private static INSTANCE: CitiesRepository;
-
-  private constructor() {
-    this.cities = [];
+  constructor() {
+    this.repository = getRepository(City);
   }
 
-  public static getInstance() {
-    if (!CitiesRepository.INSTANCE) {
-      CitiesRepository.INSTANCE = new CitiesRepository();
-    }
-    return CitiesRepository.INSTANCE;
+  async create({
+    name,
+    description,
+    sub_description,
+    image,
+  }: ICreateCityDTO): Promise<void> {
+    const city = this.repository.create({
+      name,
+      description,
+      sub_description,
+      image,
+    });
+    await this.repository.save(city);
   }
 
-  create({ name, description, sub_description, image }: ICreateCityDTO): void {
-    const city = new City(name, description, sub_description, image);
-
-    this.cities.push(city);
+  async list(): Promise<City[]> {
+    const cities = await this.repository.find();
+    return cities;
   }
 
-  list(): City[] {
-    return this.cities;
-  }
-
-  findByName(name: string): City | undefined {
-    const city = this.cities.find((city) => city.name === name);
+  async findByName(name: string): Promise<City | undefined> {
+    const city = await this.repository.findOne({ name });
 
     return city;
   }

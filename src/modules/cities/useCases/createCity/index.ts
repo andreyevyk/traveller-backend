@@ -4,15 +4,16 @@ import { CreateCityController } from "./CreateCityController";
 import { CreateCityUseCase } from "./CreateCityUseCase";
 import { UploadImageUseCase } from "./UploadImageUseCase";
 
-const citiesRepository = CitiesRepository.getInstance();
-const createCityUseCase = new CreateCityUseCase(citiesRepository);
-const storageProvider = new DiskStorageProvider();
+export default (): CreateCityController => {
+  const citiesRepository = new CitiesRepository();
+  const createCityUseCase = new CreateCityUseCase(citiesRepository);
+  const storageProvider = new DiskStorageProvider();
 
-const uploadImageUseCase = new UploadImageUseCase(storageProvider);
+  const uploadImageUseCase = new UploadImageUseCase(storageProvider);
 
-const createCityController = new CreateCityController(
-  createCityUseCase,
-  uploadImageUseCase
-);
-
-export { createCityController, storageProvider };
+  const createCityController = new CreateCityController(
+    createCityUseCase,
+    uploadImageUseCase
+  );
+  return createCityController;
+};
