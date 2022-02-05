@@ -8,7 +8,7 @@ class ListCitiesController {
   handle(request: Request, response: Response): Response {
     const cities = this.listCitiesUseCase.execute();
 
-    return response.status(201).json(cities);
+    return response.status(200).json(cities);
   }
 }
 

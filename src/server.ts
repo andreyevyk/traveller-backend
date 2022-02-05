@@ -1,12 +1,17 @@
 import express from "express";
+import swaggerUi from "swagger-ui-express";
 
 import uploadConfig from "./config/upload";
 import { router } from "./routes";
+import swaggerFile from "./swagger.json";
 
 const PORT = 3333;
 const app = express();
 
 app.use(express.json());
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
 app.use("/files", express.static(uploadConfig.uploadsFolder));
 
 app.use(router);
