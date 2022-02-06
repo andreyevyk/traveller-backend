@@ -7,7 +7,7 @@ interface ICreateCityDTO {
   image: string;
 }
 
-interface ICityRepository {
+interface ICitiesRepository {
   create({
     name,
     description,
@@ -18,4 +18,4 @@ interface ICityRepository {
   findByName(name: string): Promise<City | undefined>;
 }
 
-export { ICityRepository, ICreateCityDTO };
+export { ICitiesRepository, ICreateCityDTO };

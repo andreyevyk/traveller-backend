@@ -1,21 +1,20 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 
 import { CreateCityUseCase } from "./CreateCityUseCase";
 import { UploadImageUseCase } from "./UploadImageUseCase";
 
 class CreateCityController {
-  constructor(
-    private createCityUseCase: CreateCityUseCase,
-    private uploadImageUseCase: UploadImageUseCase
-  ) {}
-
   async handle(request: Request, response: Response): Promise<Response> {
     const { name, description, sub_description } = request.body;
     const { file } = request;
 
-    const filename = await this.uploadImageUseCase.execute(file!.filename);
+    const uploadImageUseCase = container.resolve(UploadImageUseCase);
+    const createCityUseCase = container.resolve(CreateCityUseCase);
 
-    await this.createCityUseCase.execute({
+    const filename = await uploadImageUseCase.execute(file!.filename);
+
+    await createCityUseCase.execute({
       name,
       description,
       sub_description,

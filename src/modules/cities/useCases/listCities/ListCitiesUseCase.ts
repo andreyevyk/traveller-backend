@@ -1,8 +1,14 @@
-import { City } from "../../entities/City";
-import { ICityRepository } from "../../repositories/ICitiesRepository";
+import { inject, injectable } from "tsyringe";
 
+import { City } from "../../entities/City";
+import { ICitiesRepository } from "../../repositories/ICitiesRepository";
+
+@injectable()
 class ListCitiesUseCase {
-  constructor(private citiesRepository: ICityRepository) {}
+  constructor(
+    @inject("CitiesRepository")
+    private citiesRepository: ICitiesRepository
+  ) {}
 
   async execute(): Promise<City[]> {
     const cities = await this.citiesRepository.list();

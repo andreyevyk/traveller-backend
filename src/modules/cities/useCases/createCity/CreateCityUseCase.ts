@@ -1,4 +1,6 @@
-import { ICityRepository } from "../../repositories/ICitiesRepository";
+import { injectable, inject } from "tsyringe";
+
+import { ICitiesRepository } from "../../repositories/ICitiesRepository";
 
 interface IRequest {
   name: string;
@@ -7,8 +9,12 @@ interface IRequest {
   image: string;
 }
 
+@injectable()
 class CreateCityUseCase {
-  constructor(private citiesRepository: ICityRepository) {}
+  constructor(
+    @inject("CitiesRepository")
+    private citiesRepository: ICitiesRepository
+  ) {}
 
   async execute({
     name,
