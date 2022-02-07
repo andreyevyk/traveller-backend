@@ -24,6 +24,7 @@ class CreateCityUseCase {
     thumbnail,
   }: IRequest): Promise<void> {
     const cityAlreadyExists = await this.citiesRepository.findByName(name);
+
     if (cityAlreadyExists) {
       throw new AppError("City Already Exists");
     }

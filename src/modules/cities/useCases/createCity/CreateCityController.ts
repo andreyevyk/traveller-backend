@@ -11,7 +11,6 @@ class CreateCityController {
 
     const uploadImageUseCase = container.resolve(UploadImageUseCase);
     const createCityUseCase = container.resolve(CreateCityUseCase);
-
     const filename = await uploadImageUseCase.execute(file!.filename);
 
     await createCityUseCase.execute({

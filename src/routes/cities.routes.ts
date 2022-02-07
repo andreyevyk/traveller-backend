@@ -15,8 +15,8 @@ const listCitiesController = new ListCitiesController();
 
 citiesRoutes.post(
   "/",
-  upload.single("thumbnail"),
   ensureAuthenticated,
+  upload.single("thumbnail"),
   createCityController.handle
 );
 
