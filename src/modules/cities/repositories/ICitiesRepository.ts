@@ -4,7 +4,7 @@ interface ICreateCityDTO {
   name: string;
   description: string;
   sub_description: string;
-  image: string;
+  thumbnail: string;
 }
 
 interface ICitiesRepository {
@@ -12,7 +12,7 @@ interface ICitiesRepository {
     name,
     description,
     sub_description,
-    image: string,
+    thumbnail: string,
   }: ICreateCityDTO): Promise<void>;
   list(): Promise<City[]>;
   findByName(name: string): Promise<City | undefined>;

@@ -16,7 +16,7 @@ class City {
   sub_description: string;
 
   @Column()
-  image: string;
+  thumbnail: string;
 
   @CreateDateColumn()
   created_at: Date;
@@ -25,7 +25,7 @@ class City {
     name: string,
     description: string,
     sub_description: string,
-    image: string
+    thumbnail: string
   ) {
     if (!this.id) {
       this.id = uuidV4();
@@ -33,7 +33,7 @@ class City {
     this.name = name;
     this.description = description;
     this.sub_description = sub_description;
-    this.image = image;
+    this.thumbnail = thumbnail;
   }
 }
 

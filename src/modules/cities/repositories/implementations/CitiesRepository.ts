@@ -1,9 +1,9 @@
 import { getRepository, Repository } from "typeorm";
 
 import { City } from "../../entities/City";
-import { ICityRepository, ICreateCityDTO } from "../ICitiesRepository";
+import { ICitiesRepository, ICreateCityDTO } from "../ICitiesRepository";
 
-class CitiesRepository implements ICityRepository {
+class CitiesRepository implements ICitiesRepository {
   private repository: Repository<City>;
 
   constructor() {
@@ -14,13 +14,13 @@ class CitiesRepository implements ICityRepository {
     name,
     description,
     sub_description,
-    image,
+    thumbnail,
   }: ICreateCityDTO): Promise<void> {
     const city = this.repository.create({
       name,
       description,
       sub_description,
-      image,
+      thumbnail,
     });
     await this.repository.save(city);
   }

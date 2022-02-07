@@ -18,7 +18,7 @@ class CreateCityController {
       name,
       description,
       sub_description,
-      image: filename,
+      thumbnail: filename,
     });
 
     return response.status(201).send();
