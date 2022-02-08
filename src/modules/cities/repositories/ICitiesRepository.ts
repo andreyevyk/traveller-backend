@@ -1,4 +1,4 @@
-import { City } from "../entities/City";
+import { City } from "../infra/typeorm/entities/City";
 
 interface ICreateCityDTO {
   name: string;

@@ -1,4 +1,5 @@
-import { City } from "../../entities/City";
+import { City } from "@modules/cities/infra/typeorm/entities/City";
+
 import { ICitiesRepository, ICreateCityDTO } from "../ICitiesRepository";
 
 class CitiesRepositoryInMemory implements ICitiesRepository {
