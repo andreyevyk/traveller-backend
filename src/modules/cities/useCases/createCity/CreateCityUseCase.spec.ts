@@ -1,5 +1,6 @@
-import { AppError } from "../../../../errors/AppErrors";
-import { CitiesRepositoryInMemory } from "../../repositories/in-memory/CitiesRepositoryInMemory";
+import { AppError } from "@errors/AppErrors";
+import { CitiesRepositoryInMemory } from "@modules/cities/repositories/in-memory/CitiesRepositoryInMemory";
+
 import { CreateCityUseCase } from "./CreateCityUseCase";
 
 let createCityUseCase: CreateCityUseCase;

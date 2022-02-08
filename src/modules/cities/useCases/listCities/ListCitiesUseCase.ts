@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
-import { City } from "../../entities/City";
-import { ICitiesRepository } from "../../repositories/ICitiesRepository";
+import { City } from "@modules/cities/entities/City";
+import { ICitiesRepository } from "@modules/cities/repositories/ICitiesRepository";
 
 @injectable()
 class ListCitiesUseCase {
