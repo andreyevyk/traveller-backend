@@ -1,3 +1,7 @@
+# UML Diagrama
+![DiagramaUML](./UMLdiagram.png)
+Lembrar de adicionar create_at places
+Criar one to many migration de categories
 # Cadastrar Cidade
 
 **RF**
