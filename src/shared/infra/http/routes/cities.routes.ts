@@ -1,10 +1,10 @@
 import { Router } from "express";
 import multer from "multer";
 
-import uploadConfig from "../config/upload";
-import { ensureAuthenticated } from "../middlewares/ensureAuthenticate";
-import { CreateCityController } from "../modules/cities/useCases/createCity/CreateCityController";
-import { ListCitiesController } from "../modules/cities/useCases/listCities/ListCitiesController";
+import uploadConfig from "@config/upload";
+import { CreateCityController } from "@modules/cities/useCases/createCity/CreateCityController";
+import { ListCitiesController } from "@modules/cities/useCases/listCities/ListCitiesController";
+import { ensureAuthenticated } from "@shared/infra/http/middlewares/ensureAuthenticate";
 
 const citiesRoutes = Router();
 

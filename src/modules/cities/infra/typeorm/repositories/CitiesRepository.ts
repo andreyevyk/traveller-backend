@@ -1,7 +1,11 @@
 import { getRepository, Repository } from "typeorm";
 
-import { City } from "../../entities/City";
-import { ICitiesRepository, ICreateCityDTO } from "../ICitiesRepository";
+import {
+  ICitiesRepository,
+  ICreateCityDTO,
+} from "@modules/cities/repositories/ICitiesRepository";
+
+import { City } from "../entities/City";
 
 class CitiesRepository implements ICitiesRepository {
   private repository: Repository<City>;

@@ -1,5 +1,5 @@
-import { AppError } from "@errors/AppErrors";
 import { CitiesRepositoryInMemory } from "@modules/cities/repositories/in-memory/CitiesRepositoryInMemory";
+import { AppError } from "@shared/errors/AppErrors";
 
 import { CreateCityUseCase } from "./CreateCityUseCase";
 
