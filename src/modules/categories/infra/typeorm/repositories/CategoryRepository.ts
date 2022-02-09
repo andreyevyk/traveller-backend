@@ -22,7 +22,9 @@ class CategoryRepository implements ICategoryRepository {
     await this.repository.save(category);
   }
   findAll(): Promise<Category[]> {
-    throw new Error("Method not implemented.");
+    const categories = this.repository.find();
+
+    return categories;
   }
 }
 

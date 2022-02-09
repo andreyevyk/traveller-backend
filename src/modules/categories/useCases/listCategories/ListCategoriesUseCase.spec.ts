@@ -11,6 +11,12 @@ describe("List Categories", () => {
     listCategoriesUseCase = new ListCategoriesUseCase(categoryRepository);
   });
   it("should be able to list categories", async () => {
-    await listCategoriesUseCase.execute();
+    await categoryRepository.create({
+      iconName: "icon.png",
+      name: "test",
+    });
+    const categories = await listCategoriesUseCase.execute();
+
+    expect(categories).toHaveLength(1);
   });
 });
