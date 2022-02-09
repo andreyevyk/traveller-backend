@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import { City } from "@modules/cities/entities/City";
+import { City } from "@modules/cities/infra/typeorm/entities/City";
 import { ICitiesRepository } from "@modules/cities/repositories/ICitiesRepository";
 
 @injectable()

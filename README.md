@@ -1,5 +1,5 @@
 # UML Diagrama
-![DiagramaUML](./UMLdiagram.png)
+![Class Diagram](http://www.plantuml.com/plantuml/png/ZPBFIWD13CRlynHpLA4lq5EbHIY2UEcvf3DX6vW_Iv9HHFhkQhUI7P35s_1Bo3VVbsn4WRNbv4824Ryb9PHFvockVMiKdI-GSUr5cShWV4G9JADIBGQbdOvTeRHyGdPUpz-F0fIiDp22OZo2hlqE5Dt5tRHV4uJ_QY_CytTFp_S-a7uSALhVH45ng3olcFvsAYxxfx0eVhdDUeoCqiy9ECuIKqRK5njjx1gTHLYGXlEfyhdMcPi4IjgYjQLQXevCXiUVJAzk3uVzphp-iUSHMMhPvy5K9jJ_CjISiQW1U8D4qErzOSa7GLxA5tDtBIE8l5UEo_SpNOvVhMwv_uA7bIsrWrVtReCbjfo-0000)
 Lembrar de adicionar create_at places
 Criar one to many migration de categories
 # Cadastrar Cidade
@@ -59,6 +59,7 @@ Criar one to many migration de categories
 
 **RF**
 * Deve ser possível um local
+* Não deve possuir mesmo nome de outro local
 * Pode ser acessado tanto após cadastrar cidade ou no menu superior da cidade
 * Deve ser feito a seleção do local no mapa
 * Caso selecionado o tipo *Comida e bebida*, deve ser aberto menu de opções de horarios e dias de atendimento
@@ -78,6 +79,14 @@ Criar one to many migration de categories
 
 **RNF**
 * Deve ser demonstrado no mapa o local marcado anteriormente
+
+# Listar Locais
+
+**RF**
+* Deve ser possível listar os locais
+* Deve ser possível listar os carros pela categoria *Comida e bebida*
+* Deve ser possível listar os carros pela categoria *Pontos turistícos*
+* Deve ser possível listar os carros pela categoria *Eventos Organizacionais*
 
 # Editar Local
 

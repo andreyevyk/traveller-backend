@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
+import { UploadImageUseCase } from "@shared/useCases/uploadImage/UploadImageUseCase";
+
 import { CreateCityUseCase } from "./CreateCityUseCase";
-import { UploadImageUseCase } from "./UploadImageUseCase";
 
 class CreateCityController {
   async handle(request: Request, response: Response): Promise<Response> {

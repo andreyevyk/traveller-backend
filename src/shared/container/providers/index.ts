@@ -7,7 +7,6 @@ import IStorageProvider from "@modules/cities/providers/StorageProvider/models/I
 const providers = {
   disk: DiskStorageProvider,
 };
-
 container.registerSingleton<IStorageProvider>(
   "StorageProvider",
   providers[uploadConfig.driver]
