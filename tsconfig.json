@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+    "target": "es5",
     "module": "commonjs",
+    "rootDir": "./",
+    "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
       "@modules/*": [
@@ -16,12 +16,11 @@
         "shared/*"
       ]
     },
-    "resolveJsonModule": true,
-    "outDir": "./dist",
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "strictPropertyInitialization": false,
-    "skipLibCheck": true
+    "resolveJsonModule": true,
   }
 }

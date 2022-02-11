@@ -1,5 +1,6 @@
 import { getRepository, Repository } from "typeorm";
 
+import { City } from "@modules/cities/infra/typeorm/entities/City";
 import { ICreatePlaceDTO } from "@modules/places/dtos/ICreatePlaceDTO";
 import { IPlaceRepository } from "@modules/places/repositories/IPlaceRepository";
 
@@ -22,18 +23,24 @@ class PlaceRepository implements IPlaceRepository {
     await this.repository.save(place);
   }
   async findByName(name: string): Promise<Place | undefined> {
-    const place = await this.repository.findOne({ name });
+    const place = await this.repository.findOne({
+      where: { name },
+      relations: ["city"],
+    });
 
     return place;
   }
   async findByCategory(category_id?: string): Promise<Place[]> {
-    const placeQuery = this.repository.createQueryBuilder("p");
+    const placeQuery = this.repository
+      .createQueryBuilder("p")
+      .innerJoinAndSelect("p.city", "city");
 
     if (category_id) {
       placeQuery.andWhere("c.category_id =: category_id", { category_id });
     }
 
     const places = await placeQuery.getMany();
+
     return places;
   }
 }

@@ -10,6 +10,9 @@
       "post": {
         "tags": ["City"],
         "summary": "Create a city",
+        "security": [
+          { "bearerAuth": [] }
+        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -25,7 +28,7 @@
                   "sub_description": {
                     "type": "string"
                   },
-                  "image": {
+                  "thumbnail": {
                     "type": "string",
                     "format": "binary"
                   }
@@ -40,7 +43,7 @@
             "description": "Created"
           },
           "500": {
-            "description": "Category already exists"
+            "description": "City already exists"
           }
         }
       },
@@ -80,6 +83,213 @@
             }
           }
         }
+      }
+    },
+    "/places": {
+      "post": {
+        "tags": ["Place"],
+        "summary": "Create a place",
+        "security": [
+          { "bearerAuth": [] }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "city_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }          
+        },
+        "responses": { 
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Place already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Place"],
+        "summary": "Get cities",
+        "description": "List all cities",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "city_id": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      },
+                      "updated_at": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          },
+                          "sub_description": {
+                            "type": "string"
+                          },
+                          "thumbnail": {
+                            "type": "string"
+                          },
+                          "created_at": {
+                            "type": "string"
+                          },
+                          "updated_at": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categories": {
+      "post": {
+        "tags": ["Category"],
+        "summary": "Create a category",
+        "security": [
+          { "bearerAuth": [] }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }          
+        },
+        "responses": { 
+          "201": {
+            "description": "Created"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Category"],
+        "summary": "Get categories",
+        "description": "List all categories",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "icon": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post":{
+        "tags": ["Session"],
+        "summary": "Authentication user",
+        "description": "Authentication user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }              
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { 
+            "description": "Success"
+          },
+          "400": {
+            "description": "Email or password incorrect!"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": { 
+        "type": "http", 
+        "scheme": "bearer", 
+        "bearerFormat": "JWT" 
       }
     }
   }

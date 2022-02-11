@@ -1,5 +1,15 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+
+import { Place } from "@modules/places/infra/typeorm/entities/Place";
 
 @Entity("cities")
 class City {
@@ -18,8 +28,14 @@ class City {
   @Column()
   thumbnail: string;
 
+  @OneToMany(() => Place, (place) => place.city)
+  places: Place[];
+
   @CreateDateColumn()
   created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 
   constructor(
     name: string,

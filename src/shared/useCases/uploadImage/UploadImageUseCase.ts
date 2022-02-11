@@ -1,6 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
-import IStorageProvider from "@modules/cities/providers/StorageProvider/models/IStorageProvider";
+import IStorageProvider from "@shared/container/providers/StorageProvider/IStorageProvider";
 
 @injectable()
 class UploadImageUseCase {

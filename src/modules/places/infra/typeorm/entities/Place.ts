@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   JoinColumn,
   ManyToOne,
+  UpdateDateColumn,
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
@@ -21,7 +22,7 @@ class Place {
   @Column()
   description: string;
 
-  @ManyToOne(() => City)
+  @ManyToOne(() => City, (city) => city.places)
   @JoinColumn({ name: "city_id" })
   city: City;
 
@@ -30,6 +31,9 @@ class Place {
 
   @CreateDateColumn()
   created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 
   constructor() {
     if (!this.id) {
