@@ -5,7 +5,7 @@ import path from "path";
 const tmpFolder = path.resolve(__dirname, "..", "..", "tmp");
 
 interface IUploadConfig {
-  driver: "disk";
+  driver: "disk" | "s3";
 
   tmpFolder: string;
   uploadsFolder: string;

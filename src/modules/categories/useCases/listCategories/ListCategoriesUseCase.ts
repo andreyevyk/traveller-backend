@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
-import { Category } from "@modules/categories/infra/typeorm/entities/Category";
+import { ICategoryResponseDTO } from "@modules/categories/dtos/ICategoryResponseDTO";
+import { CategoryMap } from "@modules/categories/mapper/CategoryMap";
 import { ICategoryRepository } from "@modules/categories/repositories/ICategoryRepository";
 
 @injectable()
@@ -9,10 +10,13 @@ class ListCategoriesUseCase {
     @inject("CategoryRepository")
     private categoryRepository: ICategoryRepository
   ) {}
-  async execute(): Promise<Category[]> {
+  async execute(): Promise<ICategoryResponseDTO[]> {
     const categories = await this.categoryRepository.findAll();
 
-    return categories;
+    const categoriesDTO = categories.map((category) =>
+      CategoryMap.toDto(category)
+    );
+    return categoriesDTO;
   }
 }
 

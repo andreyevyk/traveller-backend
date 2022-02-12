@@ -1,9 +1,7 @@
 import { getRepository, Repository } from "typeorm";
 
-import {
-  ICitiesRepository,
-  ICreateCityDTO,
-} from "@modules/cities/repositories/ICitiesRepository";
+import { ICreateCityDTO } from "@modules/cities/dtos/ICreateCityDTO";
+import { ICitiesRepository } from "@modules/cities/repositories/ICitiesRepository";
 
 import { City } from "../entities/City";
 

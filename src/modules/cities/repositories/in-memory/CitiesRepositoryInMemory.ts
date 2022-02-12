@@ -1,6 +1,7 @@
+import { ICreateCityDTO } from "@modules/cities/dtos/ICreateCityDTO";
 import { City } from "@modules/cities/infra/typeorm/entities/City";
 
-import { ICitiesRepository, ICreateCityDTO } from "../ICitiesRepository";
+import { ICitiesRepository } from "../ICitiesRepository";
 
 class CitiesRepositoryInMemory implements ICitiesRepository {
   cities: City[] = [];

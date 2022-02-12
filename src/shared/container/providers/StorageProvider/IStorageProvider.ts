@@ -1,4 +1,6 @@
-export default interface IStorageProvider {
+interface IStorageProvider {
   saveFile(file: string): Promise<string>;
-  deleteFile(files: string): Promise<void>;
+  deleteFile(file: string): Promise<void>;
 }
+
+export { IStorageProvider };

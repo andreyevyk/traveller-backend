@@ -1,11 +1,5 @@
+import { ICreateCityDTO } from "../dtos/ICreateCityDTO";
 import { City } from "../infra/typeorm/entities/City";
-
-interface ICreateCityDTO {
-  name: string;
-  description: string;
-  sub_description: string;
-  thumbnail: string;
-}
 
 interface ICitiesRepository {
   create({
@@ -18,4 +12,4 @@ interface ICitiesRepository {
   findByName(name: string): Promise<City | undefined>;
 }
 
-export { ICitiesRepository, ICreateCityDTO };
+export { ICitiesRepository };

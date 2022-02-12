@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
-import { City } from "@modules/cities/infra/typeorm/entities/City";
+import { ICityResponseDTO } from "@modules/cities/dtos/ICityResponseDTO";
+import { CityMap } from "@modules/cities/mapper/CityMap";
 import { ICitiesRepository } from "@modules/cities/repositories/ICitiesRepository";
 
 @injectable()
@@ -10,9 +11,10 @@ class ListCitiesUseCase {
     private citiesRepository: ICitiesRepository
   ) {}
 
-  async execute(): Promise<City[]> {
+  async execute(): Promise<ICityResponseDTO[]> {
     const cities = await this.citiesRepository.list();
-    return cities;
+    const citiesDTO = cities.map((city) => CityMap.toDto(city));
+    return citiesDTO;
   }
 }
 

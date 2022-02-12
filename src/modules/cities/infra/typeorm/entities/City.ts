@@ -1,14 +1,15 @@
+import { Expose } from "class-transformer";
 import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
   OneToMany,
   PrimaryColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
+import uploadConfig from "@config/upload";
 import { Place } from "@modules/places/infra/typeorm/entities/Place";
 
 @Entity("cities")
@@ -27,6 +28,18 @@ class City {
 
   @Column()
   thumbnail: string;
+
+  @Expose({ name: "thumbnail_url" })
+  thumbnail_url(): string {
+    switch (uploadConfig.driver) {
+      case "disk":
+        return `${process.env.APP_API_URL}/files/${this.thumbnail}`;
+      case "s3":
+        return `${process.env.AWS_BUCKET_URL}/${this.thumbnail}`;
+      default:
+        return null;
+    }
+  }
 
   @OneToMany(() => Place, (place) => place.city)
   places: Place[];
