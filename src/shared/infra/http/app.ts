@@ -3,6 +3,7 @@ import "reflect-metadata";
 import "express-async-errors";
 import "@shared/container";
 
+import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
 import swaggerUi from "swagger-ui-express";
 
@@ -24,6 +25,7 @@ app.use("/files", express.static(uploadConfig.uploadsFolder));
 
 app.use(router);
 
+app.use(cors());
 app.use(
   (err: Error, request: Request, response: Response, next: NextFunction) => {
     if (err instanceof AppError) {
