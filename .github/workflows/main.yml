@@ -40,7 +40,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd ~/app/traveller
+            cd ~/app/traveller-backend
             yarn
             ./node_modules/.bin/typeorm migration:run
             pm2 restart traveller
