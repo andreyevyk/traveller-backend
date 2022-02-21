@@ -1,6 +1,7 @@
 import { getRepository, Repository } from "typeorm";
 
 import { ICreateCityDTO } from "@modules/cities/dtos/ICreateCityDTO";
+import { ISearchCityDTO } from "@modules/cities/dtos/ISearchCityDTO";
 import { ICitiesRepository } from "@modules/cities/repositories/ICitiesRepository";
 
 import { City } from "../entities/City";
@@ -27,11 +28,18 @@ class CitiesRepository implements ICitiesRepository {
     await this.repository.save(city);
   }
 
-  async list(): Promise<City[]> {
-    const cities = await this.repository.find({
-      relations: ["places"],
-    });
-    return cities;
+  async list({ searchBy, type }: ISearchCityDTO): Promise<City[]> {
+    const citiesQuery = this.repository
+      .createQueryBuilder("c")
+      .leftJoinAndSelect("c.places", "places");
+
+    if (searchBy) {
+      citiesQuery.andWhere("c.name like '%' || :searchBy || '%'", { searchBy });
+    }
+
+    const places = await citiesQuery.getMany();
+
+    return places;
   }
 
   async findByName(name: string): Promise<City | undefined> {

@@ -1,4 +1,5 @@
 import { ICreateCityDTO } from "../dtos/ICreateCityDTO";
+import { ISearchCityDTO } from "../dtos/ISearchCityDTO";
 import { City } from "../infra/typeorm/entities/City";
 
 interface ICitiesRepository {
@@ -8,7 +9,7 @@ interface ICitiesRepository {
     sub_description,
     thumbnail: string,
   }: ICreateCityDTO): Promise<void>;
-  list(): Promise<City[]>;
+  list({ searchBy, type }: ISearchCityDTO): Promise<City[]>;
   findByName(name: string): Promise<City | undefined>;
 }
 
